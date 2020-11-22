@@ -1,11 +1,14 @@
 package main
 
 import (
-	"fmt"
+
 	"github.com/keepcalmist/workwithElastic/pkg/config"
+	"github.com/keepcalmist/workwithElastic/pkg/Server"
 )
 
-func main() {
-	cfg := config.New()
-	fmt.Println(cfg.GetString("hui"))
+func main(){
+	_ = config.New()
+	Server.Run()
 }
+
+
