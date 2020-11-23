@@ -1,8 +1,9 @@
 package config
 
 import (
-	"github.com/spf13/viper"
+	"github.com/joho/godotenv"
 	"log"
+	"os"
 )
 
 type ConfI interface {
@@ -18,7 +19,7 @@ func (c *ConfElastic) GetPort() string {
 }
 
 func GetPort() string {
-	return viper.GetString("PORT")
+	return os.Getenv("PORT")
 }
 
 func New() error {
@@ -27,11 +28,9 @@ func New() error {
 }
 
 func openEnv(){
-	viper.SetConfigName("config")
-	viper.SetConfigType("env")
-	viper.AddConfigPath(".")
-	if err := viper.ReadInConfig(); err != nil {
-		log.Fatalf("Config file doesn't exists")
+	err := godotenv.Load("C:\\Users\\User\\go\\src\\github.com\\keepcalmist\\workwithElastic\\.env")
+	if err != nil {
+		log.Println(err)
 	}
 }
 

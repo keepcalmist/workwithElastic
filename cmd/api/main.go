@@ -1,14 +1,26 @@
 package main
 
 import (
-
-	"github.com/keepcalmist/workwithElastic/pkg/config"
+	"fmt"
 	"github.com/keepcalmist/workwithElastic/pkg/Server"
+	"github.com/keepcalmist/workwithElastic/pkg/config"
+	"github.com/keepcalmist/workwithElastic/pkg/storage"
+	"log"
 )
 
-func main(){
+func init(){
 	_ = config.New()
-	Server.Run()
+}
+
+func main(){
+	go Server.Run()
+	cl, err := storage.InitElastic()
+	if err != nil {
+		log.Println(err)
+	}
+	lol, err := cl.Ping()
+	fmt.Println(lol)
+
 }
 
 
