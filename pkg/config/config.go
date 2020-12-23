@@ -1,8 +1,8 @@
 package config
 
 import (
-	"github.com/joho/godotenv"
-	"log"
+	//"github.com/joho/godotenv"
+
 	"os"
 )
 
@@ -28,10 +28,10 @@ func New() error {
 }
 
 func openEnv(){
-	err := godotenv.Load("C:\\Users\\User\\go\\src\\github.com\\keepcalmist\\workwithElastic\\.env")
-	if err != nil {
-		log.Println(err)
-	}
+	//err := godotenv.Load("C:\\Users\\User\\go\\src\\github.com\\keepcalmist\\workwithElastic\\.env")
+	//if err != nil {
+	//	log.Println(err)
+	//}
 }
 
 
