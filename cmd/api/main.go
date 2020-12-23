@@ -109,7 +109,7 @@ func main(){
 	query := map[string]interface{}{
 		"query": map[string]interface{}{
 			"match": map[string]interface{}{
-				"title": "one",
+				"title": "o ne",
 			},
 		},
 	}
@@ -124,6 +124,7 @@ func main(){
 		cl.Search.WithBody(&buf),
 		cl.Search.WithTrackTotalHits(true),
 		cl.Search.WithPretty(),
+		cl.Search.WithDf()
 	)
 	if err != nil {
 		log.Fatalf("Error getting response: %s", err)
