@@ -1,9 +1,10 @@
 package Server
 
 import (
+	"fmt"
 	"github.com/gorilla/mux"
 	"github.com/keepcalmist/workwithElastic/pkg/config"
-	"log"
+	log "github.com/sirupsen/logrus"
 	"net/http"
 	"os"
 	"os/signal"
@@ -11,7 +12,7 @@ import (
 	"time"
 )
 
-func Run() {
+func Run(status chan int,log *log.Logger) {
 	r := initRouter()
 	serv := initServer(r)
 
@@ -20,13 +21,17 @@ func Run() {
 
 	go func(){
 		if err := serv.ListenAndServe(); err != nil {
-			log.Panic()
+			log.Panic("Something wrong with server")
 		}
 	}()
 
 	waitForStop := <- signals
+	status<-1
+	fmt.Println("set",status)
 	signal.Stop(signals)
+
 	log.Println("Stop signal: ", waitForStop)
+
 }
 
 
