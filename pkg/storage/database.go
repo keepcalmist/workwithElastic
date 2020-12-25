@@ -5,5 +5,8 @@ import (
 )
 
 func InitElastic()(*elasticsearch.Client, error){
-	return elasticsearch.NewDefaultClient()
+	cfg := elasticsearch.Config{Addresses: []string{
+		"http://0.0.0.0:9200",
+	} }
+	return elasticsearch.NewClient(cfg)
 }

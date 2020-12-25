@@ -1,7 +1,6 @@
 package Server
 
 import (
-	"fmt"
 	"github.com/gorilla/mux"
 	"github.com/keepcalmist/workwithElastic/pkg/config"
 	log "github.com/sirupsen/logrus"
@@ -15,7 +14,6 @@ import (
 func Run(status chan int,log *log.Logger) {
 	r := initRouter()
 	serv := initServer(r)
-
 	signals := make(chan os.Signal, 1)
 	signal.Notify(signals, os.Interrupt,syscall.SIGINT, syscall.SIGTERM)
 
@@ -26,8 +24,7 @@ func Run(status chan int,log *log.Logger) {
 	}()
 
 	waitForStop := <- signals
-	status<-1
-	fmt.Println("set",status)
+
 	signal.Stop(signals)
 
 	log.Println("Stop signal: ", waitForStop)
